@@ -3,7 +3,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import { Auth, Universities, University }from './pages';
+import { Auth, Universities, }from './pages';
 
 const router = createBrowserRouter([
   {
@@ -14,10 +14,7 @@ const router = createBrowserRouter([
     path: "/universities",
     element: <Universities/>,
   },
-  {
-    path: "/universities/:id",
-    element: <University/>,
-  },
+
 ]);
 
 
