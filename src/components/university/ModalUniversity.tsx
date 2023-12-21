@@ -1,12 +1,16 @@
-import useUniversity from "../../hooks/university/useUniversity"
-import ContainerModal from "../ContainerModal"
-import CardUniversity from "./CardUniversity"
+import { TUniversity } from "../../hooks/university/useUniversity";
+import ContainerModal from "../ContainerModal";
+import CardUniversity from "./CardUniversity";
 
+type TProps = {
+  onClose    : ()=>void;
+  university : TUniversity;
+}
 
-const ModalUniversity = () => {
-  const {handleShowModalUniv, university} = useUniversity()
+const ModalUniversity = (props:TProps) => {
+  const {onClose, university} = props
   return (
-    <ContainerModal onCloseModal={handleShowModalUniv}>
+    <ContainerModal onCloseModal={onClose}>
         {
             university && (
                 <CardUniversity {...university}/>

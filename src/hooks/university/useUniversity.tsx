@@ -15,7 +15,6 @@ export type TUniversity = {
 const useUniversity = () => {
     const [listUniversity, setListUniversity] = useState<TUniversity[]>([])
     const [university, setUniversity] = useState<TUniversity | null>(null)
-    const [showModalUniv, setShowModalUniv] = useState(false)
 
     useEffect(()=>{
         handleGetListUniversity()
@@ -40,11 +39,9 @@ const useUniversity = () => {
         setUniversity(result)
     }
 
-    const handleShowModalUniv = ()=>{
-        setShowModalUniv(!showModalUniv)
-    }
 
-  return {listUniversity, handleGetUniversity, university,  handleShowModalUniv, showModalUniv}
+
+  return {listUniversity, handleGetUniversity, university, }
 }
 
 export default useUniversity
