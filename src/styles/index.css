@@ -14,6 +14,10 @@
      @apply overflow-x-hidden max-w-[100vw] min-h-[100vh]  relative
   }
 
+  article {
+    @apply p-4
+  }
+
 }
 
 @layer components{

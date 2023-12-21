@@ -10,7 +10,7 @@ type TProps = {
 }
 
 const Button = (props: TProps) => {
-    const {label, color, onClick, customeClass, type="contained", disabled=false} = props
+    const {label, color, onClick, customeClass="", type="contained", disabled=false} = props
 
   return (
     <button 

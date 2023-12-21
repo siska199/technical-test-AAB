@@ -56,7 +56,12 @@ const useAuth = () => {
         }
     }
 
-    return {form,user,handleLogin,handleOnChange,disabled, loading}
+    const handleLogout=()=>{
+        localStorage.removeItem('user')
+        navigate('/')
+    }
+
+    return {form,user,handleLogin,handleOnChange,disabled, loading, handleLogout}
 }
 
 export default useAuth
