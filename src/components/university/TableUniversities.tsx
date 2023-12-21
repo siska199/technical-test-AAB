@@ -2,10 +2,11 @@ import useUniversity, { TUniversity } from '../../hooks/university/useUniversity
 
 
 const TableUniversities = () => {
-  const {listUniversity} = useUniversity()
+  const {listUniversity, handleGetUniversity, handleShowModalUniv} = useUniversity()
 
   const handleGetDetaiUniversity = (university:TUniversity)=>{
-    console.log(university)
+    handleGetUniversity(university?.no)
+    handleShowModalUniv()
   }
   return (
     <div className="glass-card p-4 ">
@@ -27,7 +28,7 @@ const TableUniversities = () => {
       <tbody>
         {
           listUniversity?.map((university,no)=>
-            <tr onClick={()=>handleGetDetaiUniversity(university)}>
+            <tr onClick={()=>handleGetDetaiUniversity(university)} className='cursor-pointer hover:bg-gray-100'>
               <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
                 {no+1}
               </th>
