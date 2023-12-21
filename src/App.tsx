@@ -1,7 +1,30 @@
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+import { Auth, Universities, University }from './pages';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Auth/>,
+  },
+  {
+    path: "/universities",
+    element: <Universities/>,
+  },
+  {
+    path: "/universities/:id",
+    element: <University/>,
+  },
+]);
+
+
 export default function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <main className="container">
+      <RouterProvider router={router} />
+    </main>
   )
 }

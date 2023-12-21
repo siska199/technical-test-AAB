@@ -1,0 +1,42 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+  *{
+    @apply m-0 p-0 box-border
+  }
+  html{
+     @apply scroll-smooth
+  }
+  body{
+     @apply overflow-x-hidden max-w-[100vw] min-h-[100vh] 
+  }
+
+}
+
+@layer components{
+  .container{
+      @apply max-w-[1500px]  min-h-screen m-auto flex justify-center items-center;
+  }
+}
+
+@layer utilities {
+  .glass-card{
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 0px );
+    -webkit-backdrop-filter: blur( 0px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    @apply hidden
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
