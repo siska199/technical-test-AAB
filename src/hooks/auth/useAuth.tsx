@@ -33,7 +33,7 @@ const useAuth = () => {
                 status : 200,
                 message : 'Success Login'
                 });
-            }, 2000); 
+            }, 1000); 
         });
 
 
