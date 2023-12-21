@@ -16,7 +16,7 @@ const ContainerModal = (props:TProps) => {
         <header className="sticky top-0  ">
           <button
             onClick={onCloseModal}
-            className="h-6 w-6 text-sm bg-black text-white items-center justify-center cursor-pointer flex rounded-full ml-auto"
+            className=" text-sm items-center justify-center cursor-pointer flex rounded-full ml-auto"
           >
             X
           </button>

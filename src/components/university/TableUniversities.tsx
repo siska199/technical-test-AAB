@@ -13,7 +13,7 @@ const TableUniversities = () => {
   }
 
   return (
-    <>
+    <div className='relative'>
       <div className="glass-card p-4 ">
         <table className="items-center bg-transparent w-full border-collapse ">
         <thead>
@@ -52,7 +52,7 @@ const TableUniversities = () => {
         </table>
       </div>
       {showModal &&<ModalUniversity onClose={()=>setShowModal(false)} university={university as TUniversity}/>}
-    </>
+    </div>
   )
 }
 
