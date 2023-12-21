@@ -15,6 +15,7 @@ export type TUniversity = {
 const useUniversity = () => {
     const [listUniversity, setListUniversity] = useState<TUniversity[]>([])
     const [university, setUniversity] = useState<TUniversity | null>(null)
+    const [loading, setLoading] = useState(false)
 
     useEffect(()=>{
         handleGetListUniversity()
@@ -22,6 +23,7 @@ const useUniversity = () => {
 
     const handleGetListUniversity=async()=>{
         try {
+            setLoading(true)
             let response = await fetch(endpoints.university)
                 response = await response.json() 
 
@@ -31,6 +33,8 @@ const useUniversity = () => {
             })))
         } catch (error :any) {
             // alert(error.message)
+        }finally{
+            setLoading(false)
         }
     }
 
@@ -41,7 +45,7 @@ const useUniversity = () => {
 
 
 
-  return {listUniversity, handleGetUniversity, university, }
+  return {listUniversity, handleGetUniversity, university, loading}
 }
 
 export default useUniversity

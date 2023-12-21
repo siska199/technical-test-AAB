@@ -8,7 +8,7 @@ const Universities = () => {
   return (
     <article className="space-y-4">
       <h1 className="text-2xl ">Welcome, {user.username}</h1>
-      <TableUniversities/>
+      <TableUniversities/>   
     </article>
   )
 }
