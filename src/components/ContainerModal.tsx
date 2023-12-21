@@ -8,12 +8,15 @@ const ContainerModal = (props:TProps) => {
     const { children, onCloseModal, }= props
 
   return (
-    <article className="h-full z-[99] w-full fixed top-0 left-0 flex backdrop-invert backdrop-opacity-5 bg-black/20 items-center justify-center">
-      <div className={'p-5'}>
+    <article 
+      className="h-full z-[99] w-full fixed top-0 left-0 flex backdrop-invert backdrop-opacity-5 bg-black/20 items-center justify-center"
+      onClick={onCloseModal} 
+    >
+      <div className={' bg-white p-3'} onClick={(e)=>e.stopPropagation()}>
         <header className="sticky top-0  ">
           <button
             onClick={onCloseModal}
-            className="p-2 h-8 w-8 cursor-pointer flex rounded-full "
+            className="h-6 w-6 text-sm bg-black text-white items-center justify-center cursor-pointer flex rounded-full ml-auto"
           >
             X
           </button>
