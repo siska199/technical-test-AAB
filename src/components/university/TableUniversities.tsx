@@ -51,7 +51,7 @@ const TableUniversities = () => {
 
         </table>
       </div>
-      {showModal &&<ModalUniversity onClose={()=>setShowModal(false)} university={university}/>}
+      {showModal &&<ModalUniversity onClose={()=>setShowModal(false)} university={university as TUniversity}/>}
     </>
   )
 }
