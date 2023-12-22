@@ -1,19 +1,24 @@
-import { TUniversity } from "../../hooks/university/useUniversity";
 import ContainerModal from "../ContainerModal";
-import CardUniversity from "./CardUniversity";
+import FormUniversity from "./FormUniversity";
 
 type TProps = {
   onClose    : ()=>void;
-  university : TUniversity;
+  onEdit : ()=>void;
+  form : {
+    no : number;
+    name : string;
+    web_pages : string;
+  }
+  onChange    : (e : React.ChangeEvent<HTMLInputElement>)=>void;
 }
 
 const ModalUniversity = (props:TProps) => {
-  const {onClose, university} = props
+  const {onClose, onEdit, form, onChange} = props
   return (
     <ContainerModal onCloseModal={onClose}>
         {
-            university && (
-                <CardUniversity {...university}/>
+            form.no && (
+                <FormUniversity onClose={onClose} onEdit={onEdit} form={form} onChange={onChange}/>
             )
         }
     </ContainerModal>

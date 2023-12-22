@@ -4,13 +4,16 @@ import ModalUniversity from './ModalUniversity';
 
 
 const TableUniversities = () => {
-  const {listUniversity, handleGetUniversity,university, loading} = useUniversity()
+  const {listUniversity, handleGetUniversity, loading, handleEditUniverity, formUniversity, handleOnChangeFormUniversity } = useUniversity()
   const [showModal, setShowModal] = useState(false)
 
   const handleGetDetaiUniversity = (university:TUniversity)=>{
     handleGetUniversity(university?.no)
     setShowModal(true)
   }
+
+
+
 
   return (
     <div className='relative'>
@@ -59,7 +62,7 @@ const TableUniversities = () => {
           </tbody>
         </table>
       </div>
-      {showModal &&<ModalUniversity onClose={()=>setShowModal(false)} university={university as TUniversity}/>}
+      {showModal &&<ModalUniversity onClose={()=>setShowModal(false)}  onEdit={handleEditUniverity} form={formUniversity} onChange={handleOnChangeFormUniversity}/>}
     </div>
   )
 }

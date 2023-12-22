@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import endpoints from '../../lib/api/endpoint';
 
 export type TUniversity = {
     no               : number;
     "state-province" : null | string;
     name             : string;
-    web_pages        : string[];
+    web_pages        : string;
     country          : string;
     alpha_two_code   : string;
     domains          : string[];  
@@ -14,8 +14,14 @@ export type TUniversity = {
 
 const useUniversity = () => {
     const [listUniversity, setListUniversity] = useState<TUniversity[]>([])
-    const [university, setUniversity] = useState<TUniversity | null>(null)
     const [loading, setLoading] = useState(false)
+    const initialFormUniversity = {
+        no : 0,
+        name :'',
+        web_pages : ''
+    }
+
+    const [formUniversity, setFormUniversity] = useState(initialFormUniversity)
 
     useEffect(()=>{
         handleGetListUniversity()
@@ -29,7 +35,8 @@ const useUniversity = () => {
 
             setListUniversity((response as any )?.map((data:any,i:number)=>({
                 ...data,
-                no : i
+                no : i+1,
+                web_pages : data?.web_pages[0]
             })))
         } catch (error :any) {
             // alert(error.message)
@@ -40,12 +47,28 @@ const useUniversity = () => {
 
     const handleGetUniversity = (no:number)=>{
         const result = listUniversity?.filter((data)=>data?.no===no)[0]
-        setUniversity(result)
+        setFormUniversity(result)
+    }
+    
+
+
+    const handleOnChangeFormUniversity = (e : React.ChangeEvent<HTMLInputElement>)=>{
+        setFormUniversity({
+            ...formUniversity,
+            [e.target.name] : e.target.value
+        })
     }
 
+    const handleEditUniverity = ()=>{
+        const listUniversityUpdate = listUniversity?.map((university)=>university?.no===formUniversity?.no ? ({
+            ...university,
+            ...formUniversity
+        }) : university)
 
+        setListUniversity(listUniversityUpdate)
+    }
 
-  return {listUniversity, handleGetUniversity, university, loading}
+  return {listUniversity, handleGetUniversity,loading,formUniversity, handleEditUniverity , handleOnChangeFormUniversity,  setFormUniversity }
 }
 
 export default useUniversity
