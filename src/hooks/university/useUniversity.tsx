@@ -49,8 +49,6 @@ const useUniversity = () => {
         const result = listUniversity?.filter((data)=>data?.no===no)[0]
         setFormUniversity(result)
     }
-    
-
 
     const handleOnChangeFormUniversity = (e : React.ChangeEvent<HTMLInputElement>)=>{
         setFormUniversity({
