@@ -1,32 +1,46 @@
+import { useEffect, useState } from "react";
+import useBoundStore from "../../store";
 import Button from "../Button";
 import Input from "../Input";
 
-
-type TProps = {
-    onClose    : ()=>void;
-    onEdit : ()=>void;
-    form : {
-      no : number;
-      name : string;
-      web_pages : string;
-    }
-    onChange    : (e : React.ChangeEvent<HTMLInputElement>)=>void;
+const initialForm = {
+  no : 0,
+  name :'',
+  web_pages : ''
 }
 
-const FormUniversity = (props:TProps) => {
-    const {form,onClose , onChange,onEdit} = props;
-    
+const FormUniversity = () => {
+    const {university,handleModal,handleEditUniversity} = useBoundStore((state)=>state)
+    const [form, setForm] = useState(initialForm)
 
-    
+    useEffect(()=>{
+      setForm({
+        no : university?.no as number,
+        name :university?.name as string,
+        web_pages : university?.web_pages as string,
+      })
+
+      return ()=>{
+        setForm(initialForm)
+      }
+    },[university])
+
+    const handleOnChange = (e : React.ChangeEvent<HTMLInputElement>)=>{
+        setForm({
+            ...form,
+            [e.target.name] : e.target.value
+        })
+    }
+
     const handleSave = ()=>{
-        onClose()
-        onEdit()
+      handleEditUniversity(form)
+      handleModal(false)
     }
   return (
     <div className='space-y-4 p-4 '>
         <h3>No: {form.no}</h3>
-        <Input name={"name"} label={"Nama Universitas" } value={form.name} onChange={onChange} />
-        <Input name={"web_pages"} label={"Website"} value={form.web_pages} onChange={onChange} />
+        <Input name={"name"} label={"Nama Universitas" } value={form.name} onChange={handleOnChange} />
+        <Input name={"web_pages"} label={"Website"} value={form.web_pages} onChange={handleOnChange} />
         <Button label={"Save"} onClick={handleSave} color={"blue"} customeClass="w-[50%] ml-auto" />
     </div>
 

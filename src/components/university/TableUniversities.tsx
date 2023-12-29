@@ -1,20 +1,18 @@
-import { useState } from 'react';
-import useUniversity, { TUniversity } from '../../hooks/university/useUniversity';
+import { useEffect } from 'react';
+import useBoundStore from '../../store';
 import ModalUniversity from './ModalUniversity';
 
 
 const TableUniversities = () => {
-  const {listUniversity, handleGetUniversity, loading, handleEditUniverity, formUniversity, handleOnChangeFormUniversity } = useUniversity()
-  const [showModal, setShowModal] = useState(false)
+  const {listUniversity,   loading, handleGetUniversity,handleGetListUniversity, handleModal} = useBoundStore((state)=>state)
 
-  const handleGetDetaiUniversity = (university:TUniversity)=>{
-    handleGetUniversity(university?.no)
-    setShowModal(true)
+  useEffect(()=>{
+    handleGetListUniversity()
+  },[])
+  const handleOnClickData = (no:number)=>{
+    handleGetUniversity(no)
+    handleModal(true)
   }
-
-
-
-
   return (
     <div className='relative'>
       <div className="glass-card p-4 ">
@@ -44,7 +42,7 @@ const TableUniversities = () => {
               <>
                 {
                   listUniversity?.map((university,no)=>
-                    <tr onClick={()=>handleGetDetaiUniversity(university)} key={no} className='cursor-pointer hover:bg-gray-100'>
+                    <tr onClick={()=>handleOnClickData(university.no)} key={no} className='cursor-pointer hover:bg-gray-100'>
                       <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
                         {no+1}
                       </th>
@@ -62,7 +60,9 @@ const TableUniversities = () => {
           </tbody>
         </table>
       </div>
-      {showModal &&<ModalUniversity onClose={()=>setShowModal(false)}  onEdit={handleEditUniverity} form={formUniversity} onChange={handleOnChangeFormUniversity}/>}
+
+      <ModalUniversity/>
+    
     </div>
   )
 }

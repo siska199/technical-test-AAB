@@ -3,12 +3,13 @@
 type TProps = {
     children : React.ReactNode;
     onCloseModal : ()=>void;
+    state : boolean;
 }
 const ContainerModal = (props:TProps) => {
-    const { children, onCloseModal, }= props
+    const { children, onCloseModal, state}= props
 
   return (
-    <article 
+    state? <article 
       className="h-full z-[99] w-full fixed top-0 left-0 flex backdrop-invert backdrop-opacity-5 bg-black/20 items-center justify-center"
       onClick={onCloseModal} 
     >
@@ -23,7 +24,7 @@ const ContainerModal = (props:TProps) => {
         </header>
         <section className="">{children}</section>
       </div>
-    </article>
+    </article> : null
   );
 };
 

@@ -1,26 +1,15 @@
+import useBoundStore from "../../store";
 import ContainerModal from "../ContainerModal";
 import FormUniversity from "./FormUniversity";
 
-type TProps = {
-  onClose    : ()=>void;
-  onEdit : ()=>void;
-  form : {
-    no : number;
-    name : string;
-    web_pages : string;
-  }
-  onChange    : (e : React.ChangeEvent<HTMLInputElement>)=>void;
-}
 
-const ModalUniversity = (props:TProps) => {
-  const {onClose, onEdit, form, onChange} = props
+
+const ModalUniversity = () => {
+  const {handleModal, modal} = useBoundStore((state)=>state)
+
   return (
-    <ContainerModal onCloseModal={onClose}>
-        {
-            form.no && (
-                <FormUniversity onClose={onClose} onEdit={onEdit} form={form} onChange={onChange}/>
-            )
-        }
+    <ContainerModal state={modal} onCloseModal={()=>handleModal(false)}>
+      <FormUniversity/>
     </ContainerModal>
   )
 }
